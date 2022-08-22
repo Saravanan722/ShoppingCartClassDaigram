@@ -1,11 +1,11 @@
 package com.shoppingcart.learning;
 
-public class Item {
+public class Product {
 	private String productName;
 	private int quantity;
 	private double prize;
 
-	public Item(String productName, int quantity, double prize) {
+	public Product(String productName, int quantity, double prize) {
 		this.productName = productName;
 		this.quantity = quantity;
 		this.prize = prize;

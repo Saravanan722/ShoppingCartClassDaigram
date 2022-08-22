@@ -1,38 +1,55 @@
 package com.shoppingcart.learning;
 
+import java.util.ArrayList;
+import java.util.ListIterator;
+
 public class ShoppingCart {
+	ArrayList<Product> item;
+	double totalAmount;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Item i1 = new Item("Pen", 1, 2.0);
-		Item i2 = new Item("Pencil", 5, 10.0);
-		Item i3 = new Item("Ink Bottile", 20, 100.0);
-		Item i4 = new Item("Papper", 30, 40.0);
-		Item i5 = new Item("ExamPad", 1, 50.0);
-		Item i6 = new Item("Exam Refer Notes", 5, 500.0);
+	public ShoppingCart() {
+		this.item = new ArrayList<Product>();
+		this.totalAmount = 0;
+	}
 
-		Shopping cart = new Shopping();
+	public void addToCart(Product item) {
+		this.item.add(item);
+	}
 
-		cart.addToCart(i1);
-		cart.addToCart(i2);
-		cart.addToCart(i3);
-		cart.addToCart(i4);
-		cart.addToCart(i5);
+	public void showCart() {
+		ListIterator<Product> iterator = item.listIterator();
+		while (iterator.hasNext()) {
+			Product item1 = iterator.next();
+			System.out.println(item1);
+		}
+	}
 
-		cart.showCart();
+	public void removeFromCart(Product i) {
+		if (item.contains(i)) {
+			item.remove(i);
+		}
+	}
 
-		cart.removeFromCart(i3);
+	public double getTotalAmount() {
+		ListIterator<Product> iterator2 = item.listIterator();
+		this.totalAmount = 0;
+		while (iterator2.hasNext()) {
+			Product item3 = iterator2.next();
+			this.totalAmount = this.totalAmount + (item3.getPrize()) * item3.getQuantity();
+		}
+		return this.totalAmount;
+	}
 
-		cart.showCart();
-
-		double totalAmount = cart.getTotalAmount();
-		System.out.println(totalAmount);
-		cart.printInvoice();
-		cart.addToCart(new Item("Gk Book", 5, 300.00));
-		cart.printInvoice();
-		cart.getTotalAmount();
-		cart.printInvoice();
-		
+	public void printInvoice() {
+		ListIterator<Product> iterator3 = item.listIterator();
+		while (iterator3.hasNext()) {
+			Product item4 = iterator3.next();
+			System.out.print(item4.getProductName() + "\t");
+			System.out.print(item4.getQuantity() + "\t");
+			System.out.print(item4.getPrize() + "\t");
+			System.out.println(item4.getPrize() * item4.getQuantity());
+		}
+		System.out.println("\t\t\t" + "Total    : " + this.getTotalAmount());
 
 	}
 }

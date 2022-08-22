@@ -1,55 +1,34 @@
 package com.shoppingcart.learning;
 
-import java.util.ArrayList;
-import java.util.ListIterator;
-
 public class Shopping {
-	ArrayList<Item> item;
-	double totalAmount;
 
-	public Shopping() {
-		this.item = new ArrayList<Item>();
-		this.totalAmount = 0;
-	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Product i1 = new Product("Pen", 1, 2.0);
+		Product i2 = new Product("Pencil", 5, 10.0);
+		Product i3 = new Product("Ink Bottile", 20, 100.0);
+		Product i4 = new Product("Papper", 30, 40.0);
+		Product i5 = new Product("ExamPad", 1, 50.0);
+		Product i6 = new Product("Exam Refer Notes", 5, 500.0);
 
-	public void addToCart(Item item) {
-		this.item.add(item);
-	}
+		ShoppingCart cart = new ShoppingCart();
 
-	public void showCart() {
-		ListIterator<Item> iterator = item.listIterator();
-		while (iterator.hasNext()) {
-			Item item1 = iterator.next();
-			System.out.println(item1);
-		}
-	}
+		cart.addToCart(i1);
+		cart.addToCart(i2);
+		cart.addToCart(i3);
+		cart.addToCart(i4);
+		cart.addToCart(i5);
 
-	public void removeFromCart(Item i) {
-		if(item.contains(i)) {
-			item.remove(i);
-		}
-	}
+		cart.showCart();
 
-	public double getTotalAmount() {
-		ListIterator<Item> iterator2 = item.listIterator();
-		this.totalAmount = 0;
-		while (iterator2.hasNext()) {
-			Item item3 = iterator2.next();
-			this.totalAmount = this.totalAmount + (item3.getPrize()) * item3.getQuantity();
-		}
-		return this.totalAmount;
-	}
+		cart.removeFromCart(i3);
 
-	public void printInvoice() {
-		ListIterator<Item> iterator3 = item.listIterator();
-		while (iterator3.hasNext()) {
-			Item item4 = iterator3.next();
-			System.out.print(item4.getProductName() + "\t");
-			System.out.print(item4.getQuantity() + "\t");
-			System.out.print(item4.getPrize() + "\t");
-			System.out.println(item4.getPrize() * item4.getQuantity());
-		}
-		System.out.println("\t\t\t" + "Total    : " + this.getTotalAmount());
+		cart.showCart();
 
+		double totalAmount = cart.getTotalAmount();
+		System.out.println(totalAmount);
+		cart.printInvoice();
+		cart.addToCart(new Product("Gk Book", 5, 300.00));
+		cart.printInvoice();
 	}
 }

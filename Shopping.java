@@ -25,14 +25,18 @@ public class Shopping {
 	}
 
 	public void removeFromCart(Item i) {
-		ListIterator<Item> iterator1 = item.listIterator();
-		while (iterator1.hasNext()) {
-			Item item2 = iterator1.next();
-			if (item2.getProductName().equals(i.getProductName())) {
-				this.item.remove(i);
-				break;
-			}
+		if(item.contains(i)) {
+			item.remove(i);
 		}
+		
+//		ListIterator<Item> iterator1 = item.listIterator();
+//		while (iterator1.hasNext()) {
+//			Item item2 = iterator1.next();
+//			if (item2.getProductName().equals(i.getProductName())) {
+//				this.item.remove(i);
+//				break;
+//			}
+//		}
 	}
 
 	public double getTotalAmount() {
